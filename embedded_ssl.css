@@ -1,6 +1,2 @@
 /* load this page with https, and the subordinate page in standard http */
 @import url("http://jeffclayton.github.io/embedded_nonssl.css")
-
-body {
-  background-color:#ffc;
-}
