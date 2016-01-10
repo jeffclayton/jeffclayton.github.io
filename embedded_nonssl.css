@@ -1,5 +1,5 @@
-body { /* also affects other browsers */
-	color:blue;
+body { /* also affects other browsers, for testing */
+	/*color:blue;*/
 }
 
 /* This requires a pair of chained external style sheets on a server that has ability to handle ssl connections */
