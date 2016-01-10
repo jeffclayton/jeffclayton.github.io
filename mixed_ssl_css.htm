@@ -2,10 +2,18 @@
 <head>
   
   <style type="text/css">
+  
     /* start with white on gray */
-    .ff22embedded_nonssl { background-color:#aaa; color:#fff; }
-    .ff23via_embedded_nonssl { background-color:#aaa; color:#fff; }
-    .ff23upvia_embedded_nonssl { background-color:#aaa; color:#fff; }
+    
+	.ff22embedded_nonssl { background-color:#aaa; color:#fff; }
+	.ff23up_via_embedded_nonssl { background-color:#aaa; color:#fff; }
+	.ff23via_embedded_nonssl { background-color:#aaa; color:#fff; }
+
+  /* presets for firefox only  */
+
+	@supports (-moz-appearance:none) and (display:flex) { .ff23up_via_embedded_nonssl { background-color:#800; color:#fff; } }
+	@supports (-moz-appearance:none) and (not (cursor:zoom-in)) { .ff23via_embedded_nonssl { background-color:#800; color:#fff; } }
+
   </style>
 
 
