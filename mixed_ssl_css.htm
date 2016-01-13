@@ -29,6 +29,8 @@ CSS to separate Firefox 22 and 23 using ssl loading capabilities:<br>
 Version 23 for security reasons removed the ability to load a non-secure page from within a secure page.<br>
 Loading a ssl-encrypted css page which in turn loads an unencrypted css page does this.<br>
 All modern web browsers (Chrome, Safari) already do this, so to specify only firefox, extra css is required.<br>
+The Firefox 23+ version may not load in time from a remote site to render properly (possible race condition)<br>
+though within a site that serves up both http and https pages it appears to work effectively.<br>
 Reference: https://developer.mozilla.org/en-US/Firefox/Releases/23<br>
 
 <br>
