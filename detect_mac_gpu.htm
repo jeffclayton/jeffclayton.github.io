@@ -36,8 +36,12 @@ if (gl_find_gpu) {
 
 var txt = '';
 
-txt+= renderer_find_gpu + CRLF;
-txt+= navigator.vendor + CRLF;
+txt+= "Renderer: " + renderer_find_gpu + CRLF;
+txt+= "navigator.platform " + navigator.platform + CRLF;
+txt+= "navigator.appCodeName " + navigator.appCodeName + CRLF;
+txt+= "navigator.appName " + navigator.appName + CRLF;
+txt+= "navigator.appVersion " + navigator.appVersion + CRLF;
+txt+= "navigator.vendor " + navigator.vendor + CRLF;
   
 document.getElementById('output').innerHTML = txt;
   
