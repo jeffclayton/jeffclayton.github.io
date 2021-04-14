@@ -23,8 +23,10 @@ if (gl_find_gpu) {
   vendor_find_gpu = gl_find_gpu.getParameter(debugInfo_find_gpu.UNMASKED_VENDOR_WEBGL);
   renderer_find_gpu = gl_find_gpu.getParameter(debugInfo_find_gpu.UNMASKED_RENDERER_WEBGL);
 }
-  
-navigator.browser = ''; // add new item to navigator object
+ 
+// add new items to navigator object
+navigator.browser = ''; 
+navigator.realvendor = navigator.vendor;
 
 // basic browser identification: order is important!!!
 if (navigator.vendor.toLowerCase().indexOf('apple')!==-1)
@@ -44,6 +46,13 @@ else if (navigator.userAgent.toLowerCase().indexOf('msie')!==-1 || (navigator.us
 else if (navigator.userAgent.toLowerCase().indexOf('edge')!==-1)
   navigator.browser = 'Edge'; // MS Edge (MSHTML Version)
 
+switch (navigator.browser)
+{
+	case 'Firefox': navigator.realvendor = 'Mozilla, Inc.'; break;
+	case 'Explorer': case 'Edge': navigator.realvendor = 'Microsoft, Inc.'; break;
+	default: break;
+}
+	
 </script>
 </head>
 <body>
@@ -64,6 +73,7 @@ txt+= "navigator.userAgent: " + navigator.userAgent + CRLF;
 txt+= "navigator.appVersion: " + navigator.appVersion + CRLF;
 txt+= "navigator.vendor: " + navigator.vendor + CRLF;
 txt+= "navigator.browser: " + navigator.browser + CRLF;
+txt+= "navigator.realvendor: " + navigator.realvendor + CRLF;
   
 document.getElementById('output').innerHTML = txt;
   
