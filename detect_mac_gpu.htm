@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <title></title>
 <script language="javascript" type="text/javascript">
+
+const CRLF = "<br />\n";
   
 var canvas_find_gpu = document.createElement('canvas');
 var gl_find_gpu;
@@ -33,7 +35,10 @@ if (gl_find_gpu) {
 <script language="javascript" type="text/javascript">
 
 var txt = '';
-txt+= renderer_find_gpu;
+
+txt+= renderer_find_gpu + CRLF;
+txt+= navigator.vendor + CRLF;
+  
 document.getElementById('output').innerHTML = txt;
   
 </script>
