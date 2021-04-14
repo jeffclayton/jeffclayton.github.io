@@ -126,7 +126,7 @@ navigator.OSInfo = detect_mac_version();
 
 if (navigator.platform=='MacIntel' && navigator.OSInfo=='OS X 10.15 Catalina' 
 && (navigator.browser=='Safari' || navigator.browser=='Firefox')) 
-{ navigator.realPlatform='Mac'; navigator.OSInfo+=' / OS X 11.x Big Sur' }
+{ navigator.OSInfo+=' / OS X 11.x Big Sur' }
   
 </script>
 </head>
@@ -162,6 +162,10 @@ document.getElementById('output').innerHTML = txt;
     If any browser sees an M1 Mac via GPU detection, this recognizes Big Sur as the true OS<br>
     Intel Macs running Big Sur (using Safari or Firefox) do not recognize OS X 11 Big Sur due to a bad user agent string
   </P>
+  
+  <p>Google Chrome lists it's own GPU: 'Google SwiftShader' but the other browsers here appear to detect the M1 via the GPU value.</p>
+  
+  <p>All of these browsers if run on an M1 Mac appear to detect Big Sur in this manner.</p>
   
 </body>
 </html>
