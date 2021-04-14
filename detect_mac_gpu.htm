@@ -91,7 +91,7 @@ function detect_mac_version()
 	if (uagent.indexOf('Mac OS X')!=-1) // covers versions of OS X from 10.3 and tested up to 10.16
 	{
 	 if (uagent.indexOf('AppleWebKit/31')!=-1) os_version = "OS X 10.3"; // OS X 10.3 Panther (older versions used webkit match) just included this one for example
-	 else
+	 else // versions newer than 10.3
 	 {
 	   var idx = uagent.indexOf('Mac OS X') + 9;
 	   os_version = "OS X";
