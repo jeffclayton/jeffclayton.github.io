@@ -115,8 +115,8 @@ function detect_mac_version()
 	   if (tmp.indexOf('_')!=-1) delim = '_';
 	   else if (tmp.indexOf('.')!=-1) delim = '.';
 	   if (delim) tmp_ver = tmp.split(delim);
-	   if (tmp_ver) ver_num = parseFloat(parseInt(tmp_ver[0]) + '.' + parseInt(tmp_ver[1]));
-     if (navigator.realPlatform=='Macintosh M1') ver_num = '11.X'; // fix where version 11 disguises itself as 10.15 in some browsers
+	   if (tmp_ver) ver_num = parseFloat(parseInt(tmp_ver[0]) + '.' + parseInt(tmp_ver[1])); //navigator.realPlatform='Macintosh M1';
+     if (navigator.realPlatform=='Macintosh M1') ver_num = '11.x'; // fix where version 11 disguises itself as 10.15 in some browsers
 	   os_version += ' ' + ver_num + ' ' + id_mac_by_version(ver_num); 
 	 } 
 	}
