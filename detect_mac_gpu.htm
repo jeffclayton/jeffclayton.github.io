@@ -28,7 +28,7 @@ if (gl_find_gpu) {
 navigator.browser = ''; 
 navigator.realVendor = navigator.vendor;
 navigator.realPlatform = navigator.platform;
-navigator.MacOSVersion = '';
+navigator.OSVersion = '';
 
 // basic browser identification: order is important!!!
 if (navigator.vendor.toLowerCase().indexOf('apple')!==-1)
@@ -124,7 +124,7 @@ function detect_mac_version()
 	return os_version;
 } 
 
-navigator.MacOSVersion = detect_mac_version();
+navigator.OSVersion = detect_mac_version();
   
 </script>
 </head>
@@ -147,7 +147,7 @@ txt+= "navigator.appVersion: " + navigator.appVersion + CRLF;
 txt+= "navigator.vendor: " + navigator.vendor + CRLF;
 txt+= "navigator.realVendor: " + navigator.realVendor + CRLF;
 txt+= "navigator.realPlatform: " + navigator.realPlatform + CRLF;
-if (navigator.MacOSVersion) txt+= "navigator.MacOSVersion: " + navigator.MacOSVersion + CRLF;
+if (navigator.OSVersion) txt+= "navigator.OSVersion: " + navigator.OSVersion + CRLF;
 txt+= "navigator.browser: " + navigator.browser + CRLF;
 if (typeof(navigator.browser)=='undefined' && navigator.userAgent.toLowerCase().indexOf('firefox')!==-1) txt+='Browser: Firefox (with added security)'; 
 
