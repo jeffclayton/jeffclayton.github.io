@@ -93,14 +93,14 @@ function detect_mac_version()
     if (uagent.indexOf('AppleWebKit/31')!=-1) os_version = "OS X 10.3"; // OS X 10.3 Panther (older versions used webkit match) just included this one for example
     else
     {
-		  var idx = uagent.indexOf('Mac OS X') + 9;
-		  os_version = "OS X";
-		  var tmp = uagent.substr(idx,8);
-		  if (tmp.indexOf('_')!=-1) delim = '_';
-		  else if (tmp.indexOf('.')!=-1) delim = '.';
-		  if (delim) tmp_ver = tmp.split(delim);
-		  if (tmp_ver) ver_num = parseFloat(parseInt(tmp_ver[0]) + '.' + parseInt(tmp_ver[1]));
-		  os_version += ' ' + ver_num + ' ' + id_mac_by_version(ver_num); 
+      var idx = uagent.indexOf('Mac OS X') + 9;
+      os_version = "OS X";
+      var tmp = uagent.substr(idx,8);
+      if (tmp.indexOf('_')!=-1) delim = '_';
+      else if (tmp.indexOf('.')!=-1) delim = '.';
+      if (delim) tmp_ver = tmp.split(delim);
+      if (tmp_ver) ver_num = parseFloat(parseInt(tmp_ver[0]) + '.' + parseInt(tmp_ver[1]));
+      os_version += ' ' + ver_num + ' ' + id_mac_by_version(ver_num); 
     } 
 	}
 	
@@ -114,10 +114,10 @@ switch (navigator.browser) // for those with missing or incorrect data
 	case 'Firefox': navigator.realVendor = 'Mozilla, Inc.'; break;
 	case 'Explorer': case 'Edge': navigator.realVendor = 'Microsoft, Inc.'; break;
 	case 'Safari': 
-    if (!(/iP(hone|od|ad)/.test(navigator.platform))) // not for ipad/iphone/ipod
-    {
-      if (renderer_find_gpu=='Apple M1') navigator.realPlatform = 'Macintosh M1'; // this or macintel
-    }
+	 if (!(/iP(hone|od|ad)/.test(navigator.platform))) // not for ipad/iphone/ipod
+	 {
+	   if (renderer_find_gpu=='Apple M1') navigator.realPlatform = 'Macintosh M1'; // this or macintel
+	 }
 	break;
 	default: break;
 }
