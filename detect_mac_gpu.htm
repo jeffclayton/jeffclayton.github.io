@@ -26,19 +26,23 @@ if (gl_find_gpu) {
   
 navigator.browser = ''; // add new item to navigator object
 
-// browser-identification: order is important!!!
+// basic browser identification: order is important!!!
 if (navigator.vendor.toLowerCase().indexOf('apple')!==-1)
-  navigator.browser = 'Safari';
+  navigator.browser = 'Safari'; // Apple Safari
 else if (navigator.userAgent.toLowerCase().indexOf('firefox')!==-1)
-  navigator.browser = 'Firefox';
+  navigator.browser = 'Firefox'; // Mozilla Firefox
+else if (navigator.userAgent.toLowerCase().indexOf('silk')!==-1)
+  navigator.browser = 'Silk'; // Kindle Silk Browser
 else if (typeof(window.opera)!='undefined' || navigator.userAgent.toLowerCase().indexOf('opera')!==-1 || navigator.userAgent.toLowerCase().indexOf('opr')!==-1) 
-  navigator.browser = 'Opera';
+  navigator.browser = 'Opera'; // Opera (Chrome-ish)
 else if (navigator.vendor.toLowerCase().indexOf('google')!==-1 && navigator.userAgent.toLowerCase().indexOf('edg/')!==-1) 
   navigator.browser = 'Edge'; // Chromium-Based MS Edge
 else if (navigator.vendor.toLowerCase().indexOf('google')!==-1) 
-  navigator.browser = 'Chrome';
-else if (navigator.userAgent.toLowerCase().indexOf('msie')!==-1)
+  navigator.browser = 'Chrome'; // Google Chrome
+else if (navigator.userAgent.toLowerCase().indexOf('msie')!==-1 || (navigator.userAgent.toLowerCase().indexOf('windows nt')!==-1 && navigator.userAgent.toLowerCase().indexOf('trident')!==-1))
   navigator.browser = 'Explorer'; // MS Internet Explorer
+else if (navigator.userAgent.toLowerCase().indexOf('edge')!==-1)
+  navigator.browser = 'Edge'; // MS Edge (MSHTML Version)
 
 </script>
 </head>
