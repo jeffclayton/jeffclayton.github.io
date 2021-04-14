@@ -81,6 +81,22 @@ function id_mac_by_version(ver_num=0) // looking for x.y
   return name;
 }
   
+switch (navigator.browser) // for those with missing or incorrect data
+{
+	case 'Firefox': navigator.realVendor = 'Mozilla, Inc.'; break;
+	case 'Explorer': case 'Edge': navigator.realVendor = 'Microsoft, Inc.'; break;
+	case 'Safari': 
+	 if (!(/iP(hone|od|ad)/.test(navigator.platform))) // not for ipad/iphone/ipod
+	 {
+	   if (renderer_find_gpu=='Apple M1') 
+     {
+       navigator.realPlatform = 'Macintosh M1'; // this or macintel
+     }
+	 }
+	break;
+	default: break;
+}
+	
 function detect_mac_version()
 {
 	var uagent = navigator.userAgent;
@@ -100,6 +116,7 @@ function detect_mac_version()
 	   else if (tmp.indexOf('.')!=-1) delim = '.';
 	   if (delim) tmp_ver = tmp.split(delim);
 	   if (tmp_ver) ver_num = parseFloat(parseInt(tmp_ver[0]) + '.' + parseInt(tmp_ver[1]));
+     if (navigator.realPlatform=='Macintosh M1') os_version = '11.X'; // fix where version 11 disguises itself as 10.15 in some browsers
 	   os_version += ' ' + ver_num + ' ' + id_mac_by_version(ver_num); 
 	 } 
 	}
@@ -109,19 +126,6 @@ function detect_mac_version()
 
 navigator.MacOSVersion = detect_mac_version();
   
-switch (navigator.browser) // for those with missing or incorrect data
-{
-	case 'Firefox': navigator.realVendor = 'Mozilla, Inc.'; break;
-	case 'Explorer': case 'Edge': navigator.realVendor = 'Microsoft, Inc.'; break;
-	case 'Safari': 
-	 if (!(/iP(hone|od|ad)/.test(navigator.platform))) // not for ipad/iphone/ipod
-	 {
-	   if (renderer_find_gpu=='Apple M1') navigator.realPlatform = 'Macintosh M1'; // this or macintel
-	 }
-	break;
-	default: break;
-}
-	
 </script>
 </head>
 <body>
