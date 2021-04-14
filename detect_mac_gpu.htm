@@ -11,7 +11,7 @@ var canvas_find_gpu = document.createElement('canvas');
 var gl_find_gpu;
 var debugInfo_find_gpu;
 var vendor_find_gpu;
-var renderer_find_gpu;
+var renderer_find_gpu; // Chrome may list itself as 'Google SwiftShader'
 
 try {
   gl_find_gpu = canvas_find_gpu.getContext('webgl') || canvas_find_gpu.getContext('experimental-webgl');
