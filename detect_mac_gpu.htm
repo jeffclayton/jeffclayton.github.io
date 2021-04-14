@@ -82,19 +82,15 @@ function id_mac_by_version(ver_num=0) // looking for x.y
   return name;
 }
   
+if (renderer_find_gpu=='Apple M1') 
+{
+  navigator.realPlatform = 'Macintosh M1'; // this or macintel
+}
+  
 switch (navigator.browser) // for those with missing or incorrect data
 {
 	case 'Firefox': navigator.realVendor = 'Mozilla, Inc.'; break;
 	case 'Explorer': case 'Edge': navigator.realVendor = 'Microsoft, Inc.'; break;
-	case 'Safari': 
-	 if (!(/iP(hone|od|ad)/.test(navigator.platform))) // not for ipad/iphone/ipod
-	 {
-	   if (renderer_find_gpu=='Apple M1') 
-     {
-       navigator.realPlatform = 'Macintosh M1'; // this or macintel
-     }
-	 }
-	break;
 	default: break;
 }
 	
@@ -159,6 +155,11 @@ if (typeof(navigator.browser)=='undefined' && navigator.userAgent.toLowerCase().
 document.getElementById('output').innerHTML = txt;
   
 </script>
+  
+  <P>Google Chrome, MS Edge for Mac, Opera all recognize Big Sur (11.2 at the time of this writing)<br>
+    Safari, Firefox mistaken OS X 11 (Big Sur) for OS X 10.5 (Catalina)<br>
+    If Safari sees and M1 Mac, this recognizes Big Sur as the realPlatform value
+  </P>
   
 </body>
 </html>
