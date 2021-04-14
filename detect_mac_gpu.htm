@@ -2,10 +2,6 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title></title><!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
 <title></title>
 <script language="javascript" type="text/javascript">
 
@@ -59,183 +55,28 @@ function id_mac_by_version(ver_num=0) // looking for x.y
   {
     switch(ver_num) // https://en.wikipedia.org/wiki/MacOS_version_history
     { // version 10.3 and below were PowerPC only, 10.6 and up dropped PowerPC support in favor of Intel
-        //case 10.0: name = 'Cheetah'; break; // 2001 (Spring)
-        //case 10.1: name = 'Puma'; break; // 2001 (Fall)
-        //case 10.2: name = 'Jaguar'; break; // 2002
-        case 10.3: name = 'Panther'; break; // 2003
-        case 10.4: name = 'Tiger'; break; // 2004
-        case 10.5: name = 'Leopard'; break; // 2007
-        case 10.6: name = 'Snow Leopard'; break; // 2009
-        case 10.7: name = 'Lion'; break; // 2011
-        case 10.8: name = 'Mountain Lion'; break; // 2012
-        case 10.9: name = 'Mavericks'; break; // 2013
-        case 10.10: name = 'Yosemite'; break; // 2014
-        case 10.11: name = 'El Capitan'; break; // 2015
-        case 10.12: name = 'Sierra'; break; // 2016
-        case 10.13: name = 'High High Sierra'; break; // 2017
-        case 10.14: name = 'Mojave'; break; // 2018
-        case 10.15: name = 'Catalina'; break; // 2019 (64-bit only)
+        //case 10.0: name = 'Cheetah'; break; // 2001 (Spring) // supported PowerPC
+        //case 10.1: name = 'Puma'; break; // 2001 (Fall) // supported PowerPC
+        //case 10.2: name = 'Jaguar'; break; // 2002 // supported PowerPC
+        case 10.3: name = 'Panther'; break; // 2003 // supported Intel and PowerPC
+        case 10.4: name = 'Tiger'; break; // 2004 // supported Intel and PowerPC
+        case 10.5: name = 'Leopard'; break; // 2007 // supported Intel and PowerPC
+        case 10.6: name = 'Snow Leopard'; break; // 2009 // supported Intel
+        case 10.7: name = 'Lion'; break; // 2011 // supported Intel
+        case 10.8: name = 'Mountain Lion'; break; // 2012 // supported Intel
+        case 10.9: name = 'Mavericks'; break; // 2013 // supported Intel
+        case 10.10: name = 'Yosemite'; break; // 2014 // supported Intel
+        case 10.11: name = 'El Capitan'; break; // 2015 // supported Intel
+        case 10.12: name = 'Sierra'; break; // 2016 // supported Intel
+        case 10.13: name = 'High High Sierra'; break; // 2017 // supported Intel
+        case 10.14: name = 'Mojave'; break; // 2018 // supported Intel
+        case 10.15: name = 'Catalina'; break; // 2019 // supported Intel (64-bit only)
         default: break;    
     }
   }
   else if (parseInt(ver_num)==11) // version 11 disguises itself as 10.15 in some browsers, fix that later
   {
-    name = 'Big Sur'; // 2020 (64-bit only) OS X 11.X Required for for M1 Macs
-  }
-  return name;
-}
-  
-switch (navigator.browser) // for those with missing or incorrect data
-{
-	case 'Firefox': navigator.realVendor = 'Mozilla, Inc.'; break;
-	case 'Explorer': case 'Edge': navigator.realVendor = 'Microsoft, Inc.'; break;
-	case 'Safari': 
-	 if (!(/iP(hone|od|ad)/.test(navigator.platform))) // not for ipad/iphone/ipod
-	 {
-	   if (renderer_find_gpu=='Apple M1') 
-     {
-       navigator.realPlatform = 'Macintosh M1'; // this or macintel
-     }
-	 }
-	break;
-	default: break;
-}
-	
-function detect_mac_version()
-{
-	var uagent = navigator.userAgent;
-	var os_version = '';
-	var delim = '';
-	var ver_num = '';
-	
-	if (uagent.indexOf('Mac OS X')!=-1) // covers versions of OS X from 10.3 and tested up to 10.16
-	{
-	 if (uagent.indexOf('AppleWebKit/31')!=-1) os_version = "OS X 10.3"; // OS X 10.3 Panther (older versions used webkit match) just included this one for example
-	 else // versions newer than 10.3
-	 {
-	   var idx = uagent.indexOf('Mac OS X') + 9;
-	   os_version = "OS X";
-	   var tmp = uagent.substr(idx,8);
-	   if (tmp.indexOf('_')!=-1) delim = '_';
-	   else if (tmp.indexOf('.')!=-1) delim = '.';
-	   if (delim) tmp_ver = tmp.split(delim);
-	   if (tmp_ver) ver_num = parseFloat(parseInt(tmp_ver[0]) + '.' + parseInt(tmp_ver[1])); //navigator.realPlatform='Macintosh M1';
-     if (navigator.realPlatform=='Macintosh M1') ver_num = '11.x'; // fix where version 11 disguises itself as 10.15 in some browsers
-	   os_version += ' ' + ver_num + ' ' + id_mac_by_version(ver_num); 
-	 } 
-	}
-	
-	return os_version;
-} 
-
-navigator.MacOSVersion = detect_mac_version();
-  
-</script>
-</head>
-<body>
-  
-<p>Mac (and others) testing</p>
-  
-<div id="output"></div>
-  
-<script language="javascript" type="text/javascript">
-
-var txt = '';
-
-txt+= "Renderer: " + renderer_find_gpu + CRLF;
-txt+= "navigator.platform: " + navigator.platform + CRLF;
-txt+= "navigator.appCodeName: " + navigator.appCodeName + CRLF;
-txt+= "navigator.appName: " + navigator.appName + CRLF;
-txt+= "navigator.userAgent: " + navigator.userAgent + CRLF;
-txt+= "navigator.appVersion: " + navigator.appVersion + CRLF;
-txt+= "navigator.vendor: " + navigator.vendor + CRLF;
-txt+= "navigator.realVendor: " + navigator.realVendor + CRLF;
-txt+= "navigator.realPlatform: " + navigator.realPlatform + CRLF;
-if (navigator.MacOSVersion) txt+= "navigator.MacOSVersion: " + navigator.MacOSVersion + CRLF;
-txt+= "navigator.browser: " + navigator.browser + CRLF;
-if (typeof(navigator.browser)=='undefined' && navigator.userAgent.toLowerCase().indexOf('firefox')!==-1) txt+='Browser: Firefox (with added security)'; 
-
-document.getElementById('output').innerHTML = txt;
-  
-</script>
-  
-</body>
-</html>
-
-<script language="javascript" type="text/javascript">
-
-const CRLF = "<br />\n";
-  
-var canvas_find_gpu = document.createElement('canvas');
-var gl_find_gpu;
-var debugInfo_find_gpu;
-var vendor_find_gpu;
-var renderer_find_gpu; // Chrome may list itself as 'Google SwiftShader'
-
-try {
-  gl_find_gpu = canvas_find_gpu.getContext('webgl') || canvas_find_gpu.getContext('experimental-webgl');
-} catch (e) {
-}
-
-if (gl_find_gpu) {
-  debugInfo_find_gpu = gl_find_gpu.getExtension('WEBGL_debug_renderer_info');
-  vendor_find_gpu = gl_find_gpu.getParameter(debugInfo_find_gpu.UNMASKED_VENDOR_WEBGL);
-  renderer_find_gpu = gl_find_gpu.getParameter(debugInfo_find_gpu.UNMASKED_RENDERER_WEBGL);
-}
- 
-// add new items to navigator object
-navigator.browser = ''; 
-navigator.realVendor = navigator.vendor;
-navigator.realPlatform = navigator.platform;
-navigator.MacOSVersion = '';
-
-// basic browser identification: order is important!!!
-if (navigator.vendor.toLowerCase().indexOf('apple')!==-1)
-  navigator.browser = 'Safari'; // Apple Safari
-else if (navigator.userAgent.toLowerCase().indexOf('firefox')!==-1)
-  navigator.browser = 'Firefox'; // Mozilla Firefox
-else if (navigator.userAgent.toLowerCase().indexOf('silk')!==-1)
-  navigator.browser = 'Silk'; // Kindle Silk Browser
-else if (typeof(window.opera)!='undefined' || navigator.userAgent.toLowerCase().indexOf('opera')!==-1 || navigator.userAgent.toLowerCase().indexOf('opr')!==-1) 
-  navigator.browser = 'Opera'; // Opera (Chrome-ish)
-else if (navigator.vendor.toLowerCase().indexOf('google')!==-1 && navigator.userAgent.toLowerCase().indexOf('edg/')!==-1) 
-  navigator.browser = 'Edge'; // Chromium-Based MS Edge
-else if (navigator.vendor.toLowerCase().indexOf('google')!==-1) 
-  navigator.browser = 'Chrome'; // Google Chrome
-else if (navigator.userAgent.toLowerCase().indexOf('msie')!==-1 || (navigator.userAgent.toLowerCase().indexOf('windows nt')!==-1 && navigator.userAgent.toLowerCase().indexOf('trident')!==-1))
-  navigator.browser = 'Explorer'; // MS Internet Explorer
-else if (navigator.userAgent.toLowerCase().indexOf('edge')!==-1)
-  navigator.browser = 'Edge'; // MS Edge (MSHTML Version)
-
-function id_mac_by_version(ver_num=0) // looking for x.y
-{
-  var name = ''; 
-  if (parseInt(ver_num)<11)
-  {
-    switch(ver_num) // https://en.wikipedia.org/wiki/MacOS_version_history
-    {
-        //case 10.0: name = 'Cheetah'; break; // 2001 (Spring)
-        //case 10.1: name = 'Puma'; break; // 2001 (Fall)
-        //case 10.2: name = 'Jaguar'; break; // 2002
-        case 10.3: name = 'Panther'; break; // 2003
-        case 10.4: name = 'Tiger'; break; // 2004
-        case 10.5: name = 'Leopard'; break; // 2007
-        case 10.6: name = 'Snow Leopard'; break; // 2009
-        case 10.7: name = 'Lion'; break; // 2011
-        case 10.8: name = 'Mountain Lion'; break; // 2012
-        case 10.9: name = 'Mavericks'; break; // 2013
-        case 10.10: name = 'Yosemite'; break; // 2014
-        case 10.11: name = 'El Capitan'; break; // 2015
-        case 10.12: name = 'Sierra'; break; // 2016
-        case 10.13: name = 'High High Sierra'; break; // 2017
-        case 10.14: name = 'Mojave'; break; // 2018
-        case 10.15: name = 'Catalina'; break; // 2019 (64-bit only)
-        default: break;    
-    }
-  }
-  else if (parseInt(ver_num)==11) // version 11 disguises itself as 10.15 in some browsers, fix that later
-  {
-    name = 'Big Sur'; // 2020 (64-bit only) OS X 11.X Required for for M1 Macs
+    name = 'Big Sur'; // 2020  // supported Intel (64-bit only) and M1: OS X 11 Required for for M1 Macs
   }
   return name;
 }
