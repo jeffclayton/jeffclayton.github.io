@@ -82,12 +82,9 @@ function id_mac_by_version(ver_num=0) // looking for x.y
   }
   return name;
 }
-  
-if (navigator.gpu=='Apple M1') 
-{
-  navigator.realPlatform = 'Macintosh M1'; // this or macintel
-}
-  
+ 
+if (navigator.gpu=='Apple M1') navigator.realPlatform = 'Macintosh M1'; 
+   
 switch (navigator.browser) // for those with missing or incorrect data
 {
 	case 'Firefox': navigator.realVendor = 'Mozilla, Inc.'; break;
@@ -107,7 +104,6 @@ function detect_mac_version()
 	 if (uagent.indexOf('AppleWebKit/31')!=-1) 
    {
      os_version = "OS X 10.3"; // OS X 10.3 Panther (older versions used webkit match) just included this one for example
-     navigator.realPlatform = 'PowerPC';
    }
 	 else // versions newer than 10.3
 	 {
@@ -118,7 +114,7 @@ function detect_mac_version()
 	   else if (tmp.indexOf('.')!=-1) delim = '.';
 	   if (delim) tmp_ver = tmp.split(delim);
 	   if (tmp_ver) ver_num = parseFloat(parseInt(tmp_ver[0]) + '.' + parseInt(tmp_ver[1])); //navigator.realPlatform='Macintosh M1';
-     if (navigator.realPlatform=='Macintosh M1' && parseInt(tmp_ver[0])==10) ver_num = '11.x'; // fix where version 11 disguises itself as 10.15 in some browsers
+     if (navigator.gpu=='Apple M1' && ver_num==10.15) ver_num = '11.x'; // fix where version 11 disguises itself as 10.15 in some browsers
 	   os_version += ' ' + ver_num + ' ' + id_mac_by_version(ver_num); 
 	 } 
 	}
@@ -126,7 +122,11 @@ function detect_mac_version()
 	return os_version;
 } 
 
-navigator.OSInfo = detect_mac_version();
+navigator.OSInfo = detect_mac_version(); 
+
+if (navigator.platform=='MacIntel' && navigator.OSInfo=='OS X 10.15 Catalina' 
+&& (navigator.browser=='Safari' || navigator.browser=='Firefox')) 
+{ navigator.realPlatform=='Mac'; navigator.OSInfo+=' / OS X 11 Big Sur' }
   
 </script>
 </head>
