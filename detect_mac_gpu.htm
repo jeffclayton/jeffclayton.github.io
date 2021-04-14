@@ -74,6 +74,7 @@ txt+= "navigator.appVersion: " + navigator.appVersion + CRLF;
 txt+= "navigator.vendor: " + navigator.vendor + CRLF;
 txt+= "navigator.realVendor: " + navigator.realVendor + CRLF;
 txt+= "navigator.browser: " + navigator.browser + CRLF;
+if (typeof(navigator.browser)=='undefined' && navigator.userAgent.toLowerCase().indexOf('firefox')!==-1) txt+='Browser: Firefox (with added security)'; 
   
 document.getElementById('output').innerHTML = txt;
   
