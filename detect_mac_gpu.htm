@@ -22,6 +22,7 @@ if (gl_find_gpu) {
   debugInfo_find_gpu = gl_find_gpu.getExtension('WEBGL_debug_renderer_info');
   vendor_find_gpu = gl_find_gpu.getParameter(debugInfo_find_gpu.UNMASKED_VENDOR_WEBGL);
   renderer_find_gpu = gl_find_gpu.getParameter(debugInfo_find_gpu.UNMASKED_RENDERER_WEBGL);
+  navigator.gpu = renderer_find_gpu;
 }
  
 // add new items to navigator object
@@ -82,7 +83,7 @@ function id_mac_by_version(ver_num=0) // looking for x.y
   return name;
 }
   
-if (renderer_find_gpu=='Apple M1') 
+if (navigator.gpu=='Apple M1') 
 {
   navigator.realPlatform = 'Macintosh M1'; // this or macintel
 }
@@ -139,7 +140,7 @@ navigator.OSInfo = detect_mac_version();
 
 var txt = '';
 
-txt+= "Renderer: " + renderer_find_gpu + CRLF;
+txt+= "navigator.gpu: " + navigator.gpu + CRLF;
 txt+= "navigator.userAgent: " + navigator.userAgent + CRLF;
 txt+= "navigator.appVersion: " + navigator.appVersion + CRLF;
 txt+= "navigator.appCodeName: " + navigator.appCodeName + CRLF;
